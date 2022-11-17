@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main{
+    height: 100%vh;
+}
+
+.home{
+    background-color: #EDF2F4;
+    background-image: none;
+}
+
+.header{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    background-color: #2B2E42;
+}
+
+.header img{
+    grid-column: 0/2;
+    width: 50%;
+    margin-left: 15%;
+    margin-top: 2%;
+}
+
+.header .connexion{
+    grid-column: 4/5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10%;
+}
+
+.connexion button{
+    width: 100%;
+    margin-left: 15%;
+    margin-bottom: 5%;
+    cursor: pointer;
+
+}
+
+.connexion a{
+
+    color: #9A9595;
+    margin: 0;
+    cursor: pointer;
+}
+
+.navigation{
+    background-color: #8D9AAE;
+    width: 20%;
+    height: 93vh;
+}
+
+.circle{
+    width: 45%;
+    height: 30%;
+    background-color: #D80536;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.navigation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+.second, .third{
+    visibility: hidden;
+}
+
+.nav_items img{
+    margin: 0;
+}
+
+.nav_items{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    height: 10%;
+    margin-bottom: 10%;
+
+
+}
+
+.first_items{
+    margin-top: 35%;
+}
+
+.first_items img, .nav_items p{
+    height: auto;
+    width: 6vw;
+}
+
+.nav_items div {
+    margin-top: 50%;
+    margin-left: 50%;
+}
+
+.nav_items .p_first {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 3vh  ;
+    margin-top: 28%;
+    color: #D80536;
+}
+
+.p_second, .p_third{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 200%;
+    margin-top: 10%;
+    color: #FFFFFF;
+}
+
+.second_items img, .third_items img{
+    width: 60%;
+    height: auto;
+
+}
+
+.second_items img{
+    margin-left: 25%;
+}
+
+.third_items img{
+    margin-left: 25%;
+}
+
+.second_items p{
+ margin-left: 25%;
+}
+
+.p_first{
+    margin-left: 10%;
+}
+
+.p_third{
+    margin-left: 25%;
+}
