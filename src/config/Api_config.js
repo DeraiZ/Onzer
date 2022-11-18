@@ -1,17 +1,16 @@
-import axios from "axios";
+const clientID = '3b89c7bf24184e59a19251a7f9c4b255';
+const clientSecret = 'ebf8c1bb9c164faab2b604fb014ac9e6';
 
-const options = {
-    method: 'GET',
-    url: 'https://deezerdevs-deezer.p.rapidapi.com/search',
-    params: {q: 'rock'},
-    headers: {
-        'X-RapidAPI-Key': 'ac5f356cc2msh9c9fe8fc0dd12a2p18a8dajsn73ab3417daf3',
-        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
-    }
-};
-
-axios.request(options).then(function (response) {
-    console.log(response.data);
-}).catch(function (error) {
-    console.error(error);
-});
+// Get Token from spotify API
+export default function getApiToken(){
+    return fetch('https://accounts.spotify.com/api/token', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": `Basic ${btoa(clientID + ':' + clientSecret)}`,
+        },
+        body: "grant_type=client_credentials"
+    })
+        .then(res => res.json())
+        .then(res => res.access_token);
+}
