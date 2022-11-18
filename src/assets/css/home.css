@@ -7,7 +7,12 @@
 }
 
 main{
-    height: 100%vh;
+    height: 100%;
+
+}
+
+.body{
+    display: flex;
 }
 
 .home{
@@ -54,12 +59,12 @@ main{
 .navigation{
     background-color: #8D9AAE;
     width: 20%;
-    height: 93vh;
+    height: 100vh;
 }
 
 .circle{
-    width: 45%;
-    height: 30%;
+    width: 1rem;
+    height: 1rem;
     background-color: #D80536;
     border-radius: 50%;
     display: inline-block;
@@ -69,8 +74,8 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
+    width: 30%;
+    height: inherit;
 }
 
 .second, .third{
@@ -144,4 +149,58 @@ main{
 
 .p_third{
     margin-left: 25%;
+}
+
+.itemsList{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(5,1fr);
+    width:90%;
+}
+
+#item1 , #item5 , #item9, #item13, #item17{
+    grid-column: 1/4;
+}
+
+#item2, #item6, #item10, #item14, #item18{
+    grid-column: 4/7;
+}
+#item3, #item7, #item11, #item15, #item19 {
+    grid-column: 7/10;
+}
+#item4, #item8, #item12, #item16, #item20{
+    grid-column: 10/13;
+}
+
+#item1, #item2, #item3, #item4{
+    grid-row: 1/2;
+}
+
+#item5, #item6, #item7, #item8{
+    grid-row: 2/3;
+}
+
+#item9, #item10, #item11, #item12{
+    grid-row: 3/4;
+}
+
+#item13, #item14, #item15, #item16{
+    grid-row: 4/5;
+}
+#item17, #item18, #item19, #item20{
+    grid-row: 5/6;
+}
+
+.playlist{
+    margin: 5%;
+    border-color: #D80536;
+}
+
+section{
+    margin-left: 5%;
+}
+
+.itemsList article img{
+    width: 100%;
+    margin: 0;
 }

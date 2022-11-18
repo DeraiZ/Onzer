@@ -1,12 +1,12 @@
 import {Outlet} from "react-router-dom";
 import '../assets/css/home.css'
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../layout/header";
 import '../config/Api_config'
 import getApiToken from "../config/Api_config";
 
-export default function Home(){
-    function search(type, query, token){
+export default function Home() {
+    function search(type, query, token) {
         return fetch(`https://api.spotify.com/v1/search?type=${type}&q=${query}`, {
             method: "GET",
             headers: {
@@ -27,8 +27,8 @@ export default function Home(){
             })
     }, []);
 
-    function playlist(query, token){
-        return fetch(`https://api.spotify.com/v1/playlists/q=${query}`, {
+    function playlistImg(query, token) {
+        return fetch(`https://api.spotify.com/v1/playlists/${query}/images`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -37,41 +37,88 @@ export default function Home(){
             .then(res => res.json());
     }
 
+    const [img, setImg] = useState();
     useEffect(() => {
         getApiToken()
             .then(accessToken => {
-                playlist('37i9dQZF1DWXRqgorJj26U', accessToken)
+                playlistImg('37i9dQZF1DWXRqgorJj26U', accessToken)
                     .then(res => {
-                        console.log(res);
+                        const imgUrl = res[0].url;
+                        console.log(imgUrl);
+                        setImg(imgUrl);
                     })
                     .catch(error => console.error(error));
             })
     }, []);
 
+    function playlist(query, token) {
+        return fetch(`https://api.spotify.com/v1/users/${query}/playlists`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            }
+        })
+            .then(res => res.json());
+    }
+
+    const [item, setItem] = useState();
+    function PlaylistItems() {
+        useEffect(() => {
+            getApiToken()
+                .then(accessToken => {
+                    playlist('Spotify', accessToken)
+                        .then(res => {
+                            const itemsArray = res.items;
+                            console.log(itemsArray)
+                            let i = 0
+                            const itemArray = itemsArray.map((data) => {
+                                console.log(data.external_urls.spotify)
+                                return(
+                                        <article key={data.id} id={`item${i+=1}`} className='playlist' >
+                                            <a href={data.external_urls.spotify}><img src={data.images[0].url}/></a>
+
+                                        </article>
+                                    )
+                                }
+                            )
+                            setItem(itemArray)
+                        })
+                        .catch(error => console.error(error));
+                })
+        }, []);
+    }
+
+    PlaylistItems();
+
     return (
 
         <main className={'home'}>
             <Header/>
-            <article className={'navigation'}>
-                <a href={'home'} className={'nav_items first_items'}>
-                    <div className={'circle first'}></div>
-                    <img src={'/music.png'}/>
-                    <p className={'p_first'}>Musique</p>
-                </a >
-                <a href={'categories'} className={'nav_items second_items'}>
-                    <div className={'circle second '}></div>
-                    <img src={'/menu.png'}/>
-                    <p className={'p_second'}>Parcourir</p>
-                </a>
-                <a href={'profil'} className={'nav_items third_items'}>
-                    <div className={'circle third '}></div>
-                    <img src={'/heart-svgrepo-com.png'}/>
-                    <p className={'p_third'}>Favoris</p>
-                </a>
-            </article>
-            <section>
+            <div className={'body'}>
+                <article className={'navigation'}>
+                    <a href={'home'} className={'nav_items first_items'}>
+                        <div className={'circle first'}></div>
+                        <img src={'/music.png'}/>
+                        <p className={'p_first'}>Musique</p>
+                    </a>
+                    <a href={'categories'} className={'nav_items second_items'}>
+                        <div className={'circle second '}></div>
+                        <img src={'/menu.png'}/>
+                        <p className={'p_second'}>Parcourir</p>
+                    </a>
+                    <a href={'profil'} className={'nav_items third_items'}>
+                        <div className={'circle third '}></div>
+                        <img src={'/heart-svgrepo-com.png'}/>
+                        <p className={'p_third'}>Favoris</p>
+                    </a>
+                </article>
+                <section>
+                    <div className={'itemsList'}>
+                        {item}
+                    </div>
 
-            </section>
+                </section>
+            </div>
         </main>
     )
 }
