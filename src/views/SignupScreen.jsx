@@ -1,6 +1,6 @@
 import React from "react";
 import '../assets/css/signup.css'
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth} from "../config/firebaseConfigue";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -9,10 +9,19 @@ import * as Yup from 'yup';
 export default function SignupScreen() {
 
     const onSubmit = (values) => {
-        const { email, password } = values;
-        createUserWithEmailAndPassword(auth, email, password)
+        const { email, password, pseudo } = values;
+        createUserWithEmailAndPassword(auth, email, password, pseudo)
             .then((userCredential) => {
                 // Signed in
+                updateProfile(auth.currentUser, {
+                    displayName: pseudo
+                }).then(() => {
+                    // Profile updated!
+                    // ...
+                }).catch((error) => {
+                    // An error occurred
+                    // ...
+                });
                 const user = userCredential.user;
                 console.log(user)
                 // ...

@@ -5,6 +5,8 @@ import Header from "../layout/header";
 import '../config/Api_config'
 import getApiToken from "../config/Api_config";
 import Nav from "../layout/Nav";
+import { onAuthStateChanged,  } from "firebase/auth";
+import {auth} from '../config/firebaseConfigue'
 
 export default function Home() {
     function search(type, query, token) {
