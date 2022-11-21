@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import Header from "../layout/header";
 import '../config/Api_config'
 import getApiToken from "../config/Api_config";
+import Nav from "../layout/Nav";
 
 export default function Home() {
     function search(type, query, token) {
@@ -95,23 +96,7 @@ export default function Home() {
         <main className={'home'}>
             <Header/>
             <div className={'body'}>
-                <article className={'navigation'}>
-                    <a href={'home'} className={'nav_items first_items'}>
-                        <div className={'circle first'}></div>
-                        <img src={'/music.png'}/>
-                        <p className={'p_first'}>Musique</p>
-                    </a>
-                    <a href={'categories'} className={'nav_items second_items'}>
-                        <div className={'circle second '}></div>
-                        <img src={'/menu.png'}/>
-                        <p className={'p_second'}>Parcourir</p>
-                    </a>
-                    <a href={'profil'} className={'nav_items third_items'}>
-                        <div className={'circle third '}></div>
-                        <img src={'/heart-svgrepo-com.png'}/>
-                        <p className={'p_third'}>Favoris</p>
-                    </a>
-                </article>
+                <Nav />
                 <section>
                     <div className={'itemsList'}>
                         {item}

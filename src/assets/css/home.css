@@ -24,6 +24,9 @@ main{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     background-color: #2B2E42;
+    position: sticky;
+    top: 0;
+    z-index: 10000000;
 }
 
 .header img{
@@ -56,26 +59,24 @@ main{
     cursor: pointer;
 }
 
-.navigation{
-    background-color: #8D9AAE;
-    width: 20%;
-    height: 100vh;
-}
-
 .circle{
     width: 1rem;
     height: 1rem;
     background-color: #D80536;
     border-radius: 50%;
     display: inline-block;
+    margin-top: 50%;
 }
 
 .navigation{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #8D9AAE;
     width: 30%;
-    height: inherit;
+    height: 91.5vh;
+    position: sticky;
+    top: 81.1667px;
 }
 
 .second, .third{
@@ -105,14 +106,14 @@ main{
 }
 
 .nav_items div {
-    margin-top: 50%;
+    margin-top:100%;
     margin-left: 50%;
 }
 
 .nav_items .p_first {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 3vh  ;
+    font-size: 3vh   ;
     margin-top: 28%;
     color: #D80536;
 }
@@ -193,7 +194,7 @@ main{
 
 .playlist{
     margin: 5%;
-    border-color: #D80536;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 section{
@@ -204,3 +205,4 @@ section{
     width: 100%;
     margin: 0;
 }
+
