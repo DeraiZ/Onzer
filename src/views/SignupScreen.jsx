@@ -13,16 +13,8 @@ export default function SignupScreen() {
         createUserWithEmailAndPassword(auth, email, password, pseudo)
             .then((userCredential) => {
                 // Signed in
-                updateProfile(auth.currentUser, {
-                    displayName: pseudo
-                }).then(() => {
-                    // Profile updated!
-                    // ...
-                }).catch((error) => {
-                    // An error occurred
-                    // ...
-                });
                 const user = userCredential.user;
+
                 console.log(user)
                 // ...
             })
